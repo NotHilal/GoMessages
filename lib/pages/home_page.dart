@@ -1,51 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test_application/components/post_item.dart';
+import 'package:flutter_test_application/components/toolbar.dart';
 import 'package:flutter_test_application/styles/app_colors.dart';
 import 'package:flutter_test_application/styles/app_text.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
+  HomePage({super.key});
+  List<String> users = [];
   @override
   Widget build(BuildContext context) {
+    mockUsersFromServer();
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.background,
-          elevation: 0,
-          centerTitle: false,
-          title: const Text("GoMesseges",
-              style: TextStyle(
-                  color: AppColors.primary,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold)),
-          actions: [Icon(Icons.location_on_outlined)],
-        ),
-        body: ListView(
-          children: mockUsersFromServer(),
-        ));
-  }
-
-  Widget _userItem() {
-    return Row(
-      children: [
-        Image.asset(
-          "assets/temp/user1.png",
-          width: 40,
-          height: 40,
-        ),
-        SizedBox(width: 16),
-        Text(
-          "Hilal Elayoubi",
-          style: AppText.subtitle3,
-        ),
-      ],
+      appBar: Toolbar(
+        title: "GoMessages",
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.location_on_outlined))
+        ],
+      ),
+      body: ListView.separated(
+        itemBuilder: (context, index) {
+          return PostItem(
+            user: users[index],
+          );
+        },
+        itemCount: users.length,
+        separatorBuilder: (BuildContext context, int index) {
+          return Container(
+            height: 24,
+          );
+        },
+      ),
     );
   }
 
-  List<Widget> mockUsersFromServer() {
-    List<Widget> users = [];
+  mockUsersFromServer() {
     for (int i = 0; i < 100; i++) {
-      users.add(_userItem());
+      users.add("User number $i");
     }
-    return users;
   }
 }

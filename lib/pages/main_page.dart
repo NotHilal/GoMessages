@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test_application/pages/home_page.dart';
+import 'package:flutter_test_application/pages/profile_page.dart';
 import 'package:flutter_test_application/styles/app_colors.dart';
 
 class MainPage extends StatefulWidget {
@@ -59,6 +60,6 @@ class _MainPageState extends State<MainPage> {
     Center(child: Text("Favorite")),
     Center(child: Text("Add Post")),
     Center(child: Text("Message")),
-    Center(child: Text("User")),
+    Center(child: ProfilePage()),
   ];
 }
