@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:flutter_test_application/pages/home_page.dart';
 import 'package:flutter_test_application/styles/app_colors.dart';
 
 class MainPage extends StatefulWidget {
@@ -13,25 +15,28 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Bottom navigation controller"),
-      ),
-      body: const Center(
-        child: Text("Center Text"),
-      ),
+      body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: SvgPicture.asset("assets/svg/home icon.svg"),
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
+            icon: SvgPicture.asset("assets/svg/heart icon.svg"),
             label: "Favorite",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add),
+            icon: SvgPicture.asset("assets/svg/heart icon.svg"),
             label: "Add Post",
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset("assets/svg/chat icon.svg"),
+            label: "Message",
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset("assets/svg/profile icon.svg"),
+            label: "User",
           ),
         ],
         currentIndex: currentIndex,
@@ -40,6 +45,7 @@ class _MainPageState extends State<MainPage> {
             currentIndex = index;
           });
         },
+        type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         selectedItemColor: AppColors.background,
@@ -47,4 +53,12 @@ class _MainPageState extends State<MainPage> {
       ),
     );
   }
+
+  final pages = [
+    HomePage(),
+    Center(child: Text("Favorite")),
+    Center(child: Text("Add Post")),
+    Center(child: Text("Message")),
+    Center(child: Text("User")),
+  ];
 }

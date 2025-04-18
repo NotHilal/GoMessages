@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test_application/styles/app_colors.dart';
+import 'package:flutter_test_application/styles/app_text.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -32,7 +33,10 @@ class HomePage extends StatelessWidget {
           height: 40,
         ),
         SizedBox(width: 16),
-        Text("Hilal Elayoubi"),
+        Text(
+          "Hilal Elayoubi",
+          style: AppText.subtitle3,
+        ),
       ],
     );
   }
