@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_test_application/components/toolbar.dart';
+import 'package:flutter_test_application/components/user_avatar.dart';
+import 'package:flutter_test_application/config/app_routes.dart';
+import 'package:flutter_test_application/config/app_strings.dart';
 import 'package:flutter_test_application/styles/app_text.dart';
 
 enum ProfileMenu { edit, logout }
@@ -12,13 +15,13 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Toolbar(
-        title: "Profile",
+        title: AppStrings.profile,
         actions: [
           PopupMenuButton<ProfileMenu>(
               onSelected: (value) {
                 switch (value) {
                   case ProfileMenu.edit:
-                    Navigator.of(context).pushNamed("/edit_profile");
+                    Navigator.of(context).pushNamed(AppRoutes.editProfile);
                     break;
                   case ProfileMenu.logout:
                     print("Logout");
@@ -30,11 +33,11 @@ class ProfilePage extends StatelessWidget {
               itemBuilder: (context) {
                 return [
                   PopupMenuItem(
-                    child: Text("Edit"),
+                    child: Text(AppStrings.editProfile),
                     value: ProfileMenu.edit,
                   ),
                   PopupMenuItem(
-                    child: Text("Logout"),
+                    child: Text(AppStrings.logout),
                     value: ProfileMenu.logout,
                   ),
                 ];
@@ -43,14 +46,7 @@ class ProfilePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-            child: Image.asset(
-              "assets/temp/user1.png",
-              width: 90,
-              height: 90,
-            ),
-          ),
+          UserAvatar(size: 90),
           Text(
             "Hilal Elayoubi",
             style: AppText.header2,
@@ -71,19 +67,19 @@ class ProfilePage extends StatelessWidget {
               Column(
                 children: [
                   Text("472", style: AppText.header2),
-                  Text("Folowers"),
+                  Text(AppStrings.followers),
                 ],
               ),
               Column(
                 children: [
                   Text("119", style: AppText.header2),
-                  Text("Posts"),
+                  Text(AppStrings.posts),
                 ],
               ),
               Column(
                 children: [
                   Text("218", style: AppText.header2),
-                  Text("Folowing"),
+                  Text(AppStrings.following),
                 ],
               )
             ],

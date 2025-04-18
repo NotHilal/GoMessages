@@ -1,0 +1,34 @@
+class AppStrings {
+  static const String appName = 'GoMessages';
+  static const String helloWelcome = 'Hello, welcome back!';
+  //static const String loginToContinue = 'Login to continue';
+  static const String username = 'Username';
+  static const String password = 'Password';
+  static const String login = 'Login';
+  static const String forgotPassword = 'Forgot Password?';
+  static const String orSignInWith = 'or Sign In with';
+  static const String loginWithGoogle = 'Login with Google';
+  static const String loginWithFacebook = 'Login with Facebook';
+  static const String dontHaveAccount = 'Don\'t have an account?';
+  static const String signup = 'Sign Up';
+  static const String home = 'Home';
+  static const String favorites = 'Favorites';
+  static const String add = 'Add';
+  static const String messages = 'Messages';
+  static const String user = 'User';
+  static const String followers = 'Followers';
+  static const String posts = 'Posts';
+  static const String following = 'Following';
+  static const String profile = 'Profile';
+  static const String editProfile = 'Edit Profile';
+  static const String logout = 'Logout';
+  static const String firstName = 'First Name';
+  static const String lastName = 'Last Name';
+  static const String phoneNumber = 'Phone Number';
+  static const String location = 'Location';
+  static const String birthday = 'Birthday';
+  static const String male = 'Male';
+  static const String female = 'Female';
+  static const String other = 'Other';
+  static const String gender = 'Gender';
+}
