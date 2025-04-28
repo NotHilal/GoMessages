@@ -9,4 +9,5 @@ class AppIcons {
   static const String heart = "${svg}heart icon.svg";
   static const String chat = "${svg}chat icon.svg";
   static const String user = "${svg}profile icon.svg";
+  static const String plus = "${svg}plus.svg";
 }

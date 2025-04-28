@@ -4,7 +4,6 @@ import 'package:flutter_test_application/config/app_routes.dart';
 import 'package:flutter_test_application/config/app_strings.dart';
 import 'package:flutter_test_application/styles/app_colors.dart';
 
-import 'home_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
