@@ -1,3 +1,4 @@
+import 'package:flutter_test_application/model/user.dart';
 import 'package:flutter_test_application/pages/edit_profile_page.dart';
 import 'package:flutter_test_application/pages/home_page.dart';
 import 'package:flutter_test_application/pages/login_page.dart';
@@ -8,7 +9,7 @@ class AppRoutes {
   static final pages = {
     login: (context) => LoginPage(),
     home: (context) => HomePage(),
-    main: (context) => MainPage(),
+    main: (context) => MainPage(user: User(1, "Hilal", "Elayoubi", "0613478938", "08/10/2001", "male", true)),
     editProfile: (context) => EditProFilePage(),
     nearby: (context) => NearbyPage(),
   };

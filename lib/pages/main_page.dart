@@ -3,12 +3,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test_application/components/bottom_navigation_item.dart';
 import 'package:flutter_test_application/config/app_icons.dart';
 import 'package:flutter_test_application/config/app_strings.dart';
+import 'package:flutter_test_application/model/user.dart';
 import 'package:flutter_test_application/pages/home_page.dart';
 import 'package:flutter_test_application/pages/profile_page.dart';
 import 'package:flutter_test_application/styles/app_colors.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  final User user;
+  const MainPage({super.key, required this.user});
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -20,7 +22,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      body: pages[currentIndex.index],
+      body: pages()[currentIndex.index],
       bottomNavigationBar: MyBottomNavigation(currentIndex: currentIndex, onTap:(value) {
         setState(() {
           currentIndex=value;
@@ -30,12 +32,12 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  final pages = [
+  pages() => [
     HomePage(),
     Center(child: Text("Favorite")),
     Center(child: Text("Add Post")),
     Center(child: Text("Message")),
-    ProfilePage(),
+    ProfilePage(user: widget.user),
   ];
 }
 
@@ -51,6 +53,7 @@ enum Menus{
 class MyBottomNavigation extends StatelessWidget{
   final Menus currentIndex;
   final ValueChanged<Menus> onTap;
+
 const MyBottomNavigation({super.key, required this.currentIndex, required this.onTap});
 
  @override

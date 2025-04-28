@@ -4,12 +4,15 @@ import 'package:flutter_test_application/components/toolbar.dart';
 import 'package:flutter_test_application/components/user_avatar.dart';
 import 'package:flutter_test_application/config/app_routes.dart';
 import 'package:flutter_test_application/config/app_strings.dart';
+import 'package:flutter_test_application/model/user.dart';
 import 'package:flutter_test_application/styles/app_text.dart';
+
 
 enum ProfileMenu { edit, logout }
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  final User user;
+  const ProfilePage({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +51,7 @@ class ProfilePage extends StatelessWidget {
         children: [
           UserAvatar(size: 90),
           Text(
-            "Hilal Elayoubi",
+            '${user.firstname} ${user.lastname}',
             style: AppText.header2,
           ),
           SizedBox(

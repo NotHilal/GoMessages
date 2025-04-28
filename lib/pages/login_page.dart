@@ -1,15 +1,25 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test_application/config/app_icons.dart';
 import 'package:flutter_test_application/config/app_routes.dart';
 import 'package:flutter_test_application/config/app_strings.dart';
+import 'package:flutter_test_application/model/user.dart';
+import 'package:flutter_test_application/pages/main_page.dart';
 import 'package:flutter_test_application/styles/app_colors.dart';
+import 'package:http/http.dart'as http;
 
+const baseUrl = "http://10.0.2.2:8080";
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
 
+  LoginPage({super.key});
+  final loginRoute = '$baseUrl/login';
+  var username="";
+  var password="";
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
@@ -36,6 +46,9 @@ class LoginPage extends StatelessWidget {
                 ),
                 const Spacer(),
                 TextField(
+                  onChanged: (value){
+                    username=value;
+                  },
                   decoration: InputDecoration(
                       hintText: AppStrings.username,
                       border: const OutlineInputBorder(
@@ -47,6 +60,9 @@ class LoginPage extends StatelessWidget {
                   height: 16,
                 ),
                 TextField(
+                  onChanged: (value){
+                    password=value;
+                  },
                   decoration: InputDecoration(
                       hintText: AppStrings.password,
                       border: const OutlineInputBorder(
@@ -73,10 +89,18 @@ class LoginPage extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     //Login button
-                    onPressed: () {
+                    onPressed: () async{
+                      //final user = await doLogin();
+
                       Navigator.of(context)
-                          .pushReplacementNamed(AppRoutes.main);
+                          .push(PageRouteBuilder(pageBuilder:
+                          (context, animation, secondaryanimation){
+                            //return MainPage(user: user);
+                            return MainPage(user: User(1, "Hilal", "Elayoubi", "0613478938", "08/10/2001", "male", true));
+                          }
+                           ));
                     },
+
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary,
                       foregroundColor: Colors.white,
@@ -173,4 +197,26 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+  
+  Future<User> doLogin() async{
+    final body = {
+      'username':username,
+      'password':password,
+    };
+    final response = await http.post(Uri.parse(loginRoute), body: jsonEncode(body));
+    if(response.statusCode==200){
+      print(response.body);
+      final json = jsonDecode(response.body);
+      final user = User.fromJson(json['data']);
+
+      return user;
+    }
+    else{
+      print("You have an error");
+      throw Exception("error");
+    }
+
+
+  }
+
 }

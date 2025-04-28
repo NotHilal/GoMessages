@@ -10,4 +10,5 @@ class AppIcons {
   static const String chat = "${svg}chat icon.svg";
   static const String user = "${svg}profile icon.svg";
   static const String plus = "${svg}plus.svg";
+  static const String location = "${svg}location.svg";
 }
